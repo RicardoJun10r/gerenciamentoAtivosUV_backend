@@ -25,53 +25,134 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Adicionar</button>
-                            </li>
-                            <li class="nav-item">
-                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Atualizar</button>
+                                <button class="btn btn-success" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Adicionar</button>
                             </li>
                             <li class="nav-item">
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Deletar</button>
                             </li>
                         </ul>
                         <form action="" class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Digite o ativo" aria-label="Search">
-                            <button class="btn btn-light" type="submit">Procurar</button>
+                            <input class="form-control me-2" type="search" placeholder="Procure o ativo" aria-label="Search">
+                            <button class="btn btn-warning" type="submit">Atualizar</button>
                         </form>
                     </div>
                 </div>
             </nav>
             <!-- END NAVBAR -->
 
-            <!-- Adicionar_Modal -->
+            <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Adicionar Ativo</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-3">
+                            <label for="recipient-name" class="col-form-label">ID</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Adicionar eficiência</button>
+                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">Adicionar coordenadas</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Adicionar Eficiência</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="">
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="inputGroupSelect01">Mẽs</label>
+                                <select class="form-select" id="inputGroupSelect01">
+                                  <option selected>Selecione</option>
+                                  <option value="1">Janeiro</option>
+                                  <option value="2">Fevereiro</option>
+                                  <option value="3">Março</option>
+                                  <option value="4">Abril</option>
+                                  <option value="5">Maio</option>
+                                  <option value="6">Junho</option>
+                                  <option value="7">Julho</option>
+                                  <option value="8">Agosto</option>
+                                  <option value="9">Setembro</option>
+                                  <option value="10">Outubro</option>
+                                  <option value="11">Novembro</option>
+                                  <option value="12">Dezembro</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="inputEmail4" class="form-label">Eficiência</label>
+                                <input type="email" class="form-control" id="inputEmail4">
+                              </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Cancelar</button>
+                      <button class="btn btn-primary" data-bs-toggle="modal">Criar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Adicionar coordenadas</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="recipient-name" class="col-form-label">Longitude</label>
+                                    <input type="text" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="col-6">
+                                    <label for="recipient-name" class="col-form-label">Latitude</label>
+                                    <input type="text" class="form-control" id="recipient-name">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Cancelar</button>
+                      <button class="btn btn-primary" data-bs-toggle="modal">Criar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <!-- Deletar_Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar Ativo</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Deltar Ativo</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <form>
                                 <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                    <label for="recipient-name" class="col-form-label">ID</label>
                                     <input type="text" class="form-control" id="recipient-name">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="message-text" class="col-form-label">Message:</label>
-                                    <textarea class="form-control" id="message-text"></textarea>
                                 </div>
                             </form>
                         </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Send message</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-danger">Deletar</button>
                     </div>
                     </div>
                 </div>
             </div>
-
-            <!-- End Adicionar_Modal -->
+            <!-- End Deletar_Modal -->
 
             <!-- Create Form 
             <div class="container">
