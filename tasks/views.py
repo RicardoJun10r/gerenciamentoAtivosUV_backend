@@ -1,17 +1,46 @@
 from django.shortcuts import render, redirect
-from .models import Task
+from .models import Localizacao, Eficiencia
 
 # Create your views here.
-def listar(request):
-    tasks = Task.objects.all()
-    return render(request, "tarefas.html", {"tasks": tasks})
+def home(request):
+    localizacao = listar_localizacao(request)
+    return render(request, "tarefas.html",{"localizacao": localizacao})
 
-def create_task(request):
-    tasks = Task(title=request.POST['title'], description=request.POST['description'])
-    tasks.save()
+def add_localizacao(request):
+    nova_longitude = request.POST['longitude']
+    nova_latitude = request.POST['latitude']
+    if nova_longitude == "" or nova_latitude == "":
+        localizacao = Localizacao.objects.all()
+        return render(
+            request, "tarefas.html/tasks/", {"localizacao": localizacao, "error": "Longitude e Latitude são necessárias!"}
+        )
+    localizacao = Localizacao(longitude=nova_longitude, latitude=nova_latitude)
+    localizacao.save()
     return redirect("/tasks/")
 
-def delete_task(request, task_id):
-    task = Task.objects.get(id=task_id)
-    task.delete()
+def add_eficiencia(request, loc_id):
+    novo_mes = request.POST['mes']
+    nova_porcentagem = request.POST['porcentagem']
+    localizacao_id = Localizacao.objects.get(id=loc_id)
+    eficiencia = Eficiencia(mes=novo_mes, porcentagem=nova_porcentagem, localizacao=localizacao_id)
+    eficiencia.save()
+    return redirect("/tasks/")
+
+def get_localizacao(request, loc_id):
+    localizacao = Localizacao.objects.get(id=loc_id)
+    return render(request, "eficiencia.html", {"localizacao":localizacao})
+
+def listar_localizacao(request):
+    localizacao = Localizacao.objects.all()
+    # return render(request, "tarefas.html", {"localizacao": localizacao})
+    return localizacao
+
+def listar_eficiencia(request, loc_id):
+    localizacao_id = Localizacao.objects.get(id=loc_id)
+    eficiencia = Eficiencia.objects.get(localizacao=localizacao_id)
+    return render(request, "list_efic.html", {"eficiencia": eficiencia})
+
+def deletar_localizacao(request, loc_id):
+    localizacao = Localizacao.objects.get(id=loc_id)
+    localizacao.delete()
     return redirect("/tasks/")
