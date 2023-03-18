@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Localizacao, Eficiencia
 
 # Create your views here.
@@ -22,7 +22,7 @@ def add_eficiencia(request, loc_id):
     novo_mes = request.POST['mes']
     nova_porcentagem = request.POST['porcentagem']
     localizacao_id = Localizacao.objects.get(id=loc_id)
-    eficiencia = Eficiencia(mes=novo_mes, porcentagem=nova_porcentagem, localizacao=localizacao_id)
+    eficiencia = Eficiencia.objects.create(mes=novo_mes, porcentagem=nova_porcentagem, localizacao=localizacao_id)
     eficiencia.save()
     return redirect("/tasks/")
 
@@ -36,8 +36,7 @@ def listar_localizacao(request):
     return localizacao
 
 def listar_eficiencia(request, loc_id):
-    localizacao_id = Localizacao.objects.get(id=loc_id)
-    eficiencia = Eficiencia.objects.get(localizacao=localizacao_id)
+    eficiencia = Eficiencia.objects.filter(localizacao_id=loc_id)
     return render(request, "list_efic.html", {"eficiencia": eficiencia})
 
 def deletar_localizacao(request, loc_id):
