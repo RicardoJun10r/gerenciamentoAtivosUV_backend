@@ -7,8 +7,7 @@ def home(request):
     localizacao = listar_localizacao(request)
     return render(request, "tarefas.html",{"localizacao": localizacao})
 
-def dados(request):
-    
+def hMap_dados():
     IDs = []
     equipamentos = Localizacao.objects.all().values_list()
     cont = 0
@@ -25,7 +24,26 @@ def dados(request):
         hMap.set_val(IDs[i], Eficiencia.objects.filter(localizacao_id=IDs[i]).values_list())
         i = i + 1
     print(hMap)
-    return render(request, "heat_map.html")
+    return hMap
+
+def dados(request):
+    IDs = []
+    equipamentos = Localizacao.objects.all().values_list()
+    cont = 0
+
+    # Pegando os IDS
+    for cont in range(equipamentos.__len__()):
+        IDs.append(equipamentos[cont][0])
+        cont = cont + 1
+
+    # Pegando a eficiência de cada equipamento
+    hMap = HashTable(IDs.__len__()-1)
+    i = 0
+    for i in range(IDs.__len__()):
+        hMap.set_val(IDs[i], Eficiencia.objects.filter(localizacao_id=IDs[i]).values_list())
+        i = i + 1
+    print(hMap)
+    return render(request, "heat_map.html", {"hmap": hMap})
 
 def mapa(request, loc_id):
     localizacao = Localizacao.objects.get(id=loc_id)

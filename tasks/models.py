@@ -1,10 +1,9 @@
 from django.db import models
 
 # Create your models here.
-
 class Localizacao(models.Model):
-    longitude = models.BigIntegerField(db_column="longitude_col", null=True)
-    latitude = models.BigIntegerField(db_column="latitude_col", null=True)
+    longitude = models.FloatField(db_column="longitude_col", null=True)
+    latitude = models.FloatField(db_column="latitude_col", null=True)
 
     def __str__(self):
         return f'{self.longitude} {self.latitude}'

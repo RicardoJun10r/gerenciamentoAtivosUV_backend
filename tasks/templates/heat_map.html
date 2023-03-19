@@ -12,7 +12,10 @@
     </head>
     <body>
         <div class="container-fluid">
-            opa
+            Mapa de calor
+            {%for i in hmap%}
+                {{i.id}}
+            {%endfor%}
             <div>
                 <a class="btn btn-primary" href="/tasks/">Voltar</a>
             </div>
