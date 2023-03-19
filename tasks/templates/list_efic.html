@@ -12,16 +12,18 @@
     </head>
     <body>
         <div class="container-fluid">
-            {% for e in eficiencia %}
-                ID[eficiencia]: {{e.id}}
-                <br>
-                mes: {{e.mes}}
-                <br>
-                porcentagem: {{e.porcentagem}}
-                <br>
-                ID[localizacao]: {{e.localizacao.id}}
-                <br>
-            {% endfor %}
+            <table>
+                <tr>
+                    <td>Mẽs</td>
+                    <td>eficiência</td>
+                </tr>
+                {% for e in eficiencia %}
+                    <tr>
+                        <td>{{e.mes}}</td>
+                        <td>{{e.porcentagem}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
             <div>
                 <a class="btn btn-primary" href="/tasks/">Voltar</a>
             </div>
