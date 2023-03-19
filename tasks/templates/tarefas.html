@@ -32,6 +32,9 @@
                             <li class="nav-item">
                                 <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Deletar</button>
                             </li>
+                            <li class="nav-item">
+                                <a type="button" class="btn btn-primary" href="{% url 'heat_map' %}">HeatMap</a>
+                            </li>
                         </ul>
                         <!-- END ITENS -->
 
@@ -111,10 +114,6 @@
             </div>
             <!-- END DELETAR MODAL -->
 
-            <!-- EFICIÊNCIA MODAL -->
-            
-            <!-- END EFICIÊNCIA MODAL -->
-
             <!-- Listando ativos -->
             {% for loc in localizacao %}
                 <div class="list-group">
@@ -127,6 +126,10 @@
                         <p>Latitude: {{loc.latitude}}</p>
                     </div>
                     <a class="btn btn-primary" href="{% url 'list_eficiencia' loc.id %}">Ver eficiência</a>
+                    <form action="{% url 'mostrar_mapa' loc.id %}" method="GET">
+                        {% csrf_token %}
+                        <button class="btn btn-primary">Procurar</button>
+                    </form>
                     <a class="btn btn-primary" href="{% url 'buscar' loc.id %}">Adicionar Eficiência</a>
                     <form action="{% url 'deletar_loc' loc.id %}" method="POST">
                         {% csrf_token %}
