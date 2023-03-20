@@ -5,7 +5,6 @@ import plotly.express as px
 # Create your views here.
 def home(request):
     localizacao = listar_localizacao(request)
-    print(localizacao)
     return render(request, "tarefas.html",{"localizacao": localizacao})
 
 def dados(request):
@@ -28,7 +27,6 @@ def dados(request):
         axis_x.append(meses[x][2])
     porcentagem = []
     row = 0
-    print(IDs)
     for row in range(meses_eficiencia.__len__()):
         lista_nova = []
         for j in range(len(meses_eficiencia[0][0])):
