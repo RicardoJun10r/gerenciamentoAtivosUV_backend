@@ -10,53 +10,86 @@
             integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
             crossorigin="anonymous">
     </head>
-    <body>
-        <div class="container-fluid">
-            <form action="{% url 'add_eficiencia' localizacao.id %}" method="POST">
-                {% csrf_token %}
-                <div class="card w-75 mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Ativo - {{ localizacao.id }}</h5>
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupSelect01">Mês</label>
-                            <select class="form-select" id="mes" name="mes">
-                                <option selected>Selecione</option>
-                                <option value="JAN">Janeiro</option>
-                                <option value="FEV">Fevereiro</option>
-                                <option value="MAR">Março</option>
-                                <option value="ABR">Abril</option>
-                                <option value="MAI">Maio</option>
-                                <option value="JUN">Junho</option>
-                                <option value="JUL">Julho</option>
-                                <option value="AGO">Agosto</option>
-                                <option value="SET">Setembro</option>
-                                <option value="OUT">Outubro</option>
-                                <option value="NOV">Novembro</option>
-                                <option value="DEZ">Dezembro</option>
-                            </select>
-                        </div>
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupSelect01">Ano</label>
-                            <select class="form-select" id="ano" name="ano">
-                                <option selected>Selecione</option>
-                                <option value="19">2019</option>
-                                <option value="20">2020</option>
-                                <option value="21">2021</option>
-                                <option value="22">2022</option>
-                                <option value="23">2023</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="inputEmail4" class="form-label">Eficiência</label>
-                            <input type="text" class="form-control" id="porcentagem" name="porcentagem">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="/tasks/" class="btn btn-primary">Voltar</a>
-                        <button class="btn btn-primary" type="submit">Criar</button>
+    <body style="background-color: #fff3d0; font-family: roboto; font-weight: bold;">
+        <div class="container-xll">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #6f42c1">
+                <div class="container-fluid col-10">
+                    <a href="/tasks/" style="text-decoration: none; color: #000; margin-right: 10px;">Voltalia</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggle-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                        <!-- ITENS -->
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <button class="btn btn-outline-light" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" style="margin-right: 10px;">Adicionar</button>
+                            </li>
+                            <li class="nav-item">
+                                <a type="button" class="btn btn-outline-light" href="{% url 'heat_map' %}" style="margin-right: 10px;">HeatMap</a>
+                            </li>
+                        </ul>
+                        <!-- END ITENS -->
+
+                        <!-- PROCURAR -->
+                        <form action="" class="d-flex" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Procure o ativo" aria-label="Search">
+                            <button class="btn btn-outline-warning" type="submit">Atualizar</button>
+                        </form>
+                        <!-- END PROCURAR -->
                     </div>
                 </div>
-            </form>
+            </nav>
+            <div style="display: flex; height: 80vh; justify-content: center; align-items: center;">
+                <form action="{% url 'add_eficiencia' localizacao.id %}" method="POST">
+                    {% csrf_token %}
+                    <div style="background-color: #f0eaea; width: 700px; height: 300px; border: #bcbe33 solid 2px;">
+                        <div class="">
+                            <h5 class="card-title" style="text-align: center; text-decoration: underline 1px;">Ativo - {{ localizacao.id }}</h5>
+                            <div  style="display: grid; position: relative; justify-content: center; align-items: center;">
+                                <div class="">
+                                    <label class="input-group-text" for="inputGroupSelect01">Mês</label>
+                                    <select class="form-select" id="mes" name="mes">
+                                        <option selected>Selecione</option>
+                                        <option value="JAN">Janeiro</option>
+                                        <option value="FEV">Fevereiro</option>
+                                        <option value="MAR">Março</option>
+                                        <option value="ABR">Abril</option>
+                                        <option value="MAI">Maio</option>
+                                        <option value="JUN">Junho</option>
+                                        <option value="JUL">Julho</option>
+                                        <option value="AGO">Agosto</option>
+                                        <option value="SET">Setembro</option>
+                                        <option value="OUT">Outubro</option>
+                                        <option value="NOV">Novembro</option>
+                                        <option value="DEZ">Dezembro</option>
+                                    </select>
+                                </div>
+                                <div class="" >
+                                    <label class="input-group-text" for="inputGroupSelect01">Ano</label>
+                                    <select class="form-select" id="ano" name="ano">
+                                        <option selected>Selecione</option>
+                                        <option value="19">2019</option>
+                                        <option value="20">2020</option>
+                                        <option value="21">2021</option>
+                                        <option value="22">2022</option>
+                                        <option value="23">2023</option>
+                                    </select>
+                                </div>
+                                <div class="" style="display: flex; position: relative; justify-content: center; align-items: center;">
+                                    <label for="inputEmail4" class="input-group-text">Eficiência</label>
+                                    <input type="text" class="form-control" id="porcentagem" name="porcentagem">
+                                    <h1>%</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="" style="text-align: center; justify-content: space-between; align-items: center;">
+                            <a href="/tasks/" class="btn btn-outline-danger">Voltar</a>
+                            <button class="btn btn-outline-success" type="submit">Criar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
