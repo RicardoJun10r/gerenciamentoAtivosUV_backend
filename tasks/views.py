@@ -66,8 +66,10 @@ def add_localizacao(request):
 
 def add_eficiencia(request, loc_id):
     novo_mes = request.POST['mes']
+    novo_ano = request.POST['ano']
     nova_porcentagem = request.POST['porcentagem']
     localizacao_id = Localizacao.objects.get(id=loc_id)
+    novo_mes = novo_mes + '-' + novo_ano
     eficiencia = Eficiencia.objects.create(mes=novo_mes, porcentagem=nova_porcentagem, localizacao=localizacao_id)
     eficiencia.save()
     return redirect("/tasks/")

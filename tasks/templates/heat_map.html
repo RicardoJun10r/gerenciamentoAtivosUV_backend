@@ -12,8 +12,11 @@
     </head>
     <body>
         <div class="container-fluid">
+            {{error}}
             Mapa de calor
                 {{chart|safe}}
+                {% empty %}
+                    <h1 class="text-light">Nenhum equipamento cadastrado!</h1>
                 <a class="btn btn-primary" href="/tasks/">Voltar</a>
             </div>
         </div>

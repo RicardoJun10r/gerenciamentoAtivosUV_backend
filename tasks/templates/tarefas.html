@@ -11,14 +11,15 @@
             rel="stylesheet"
             integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
             crossorigin="anonymous">
+            <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet' type='text/css'>
     </head>
-    <body class="bg-dark">
+    <body class="" style="background-color: #fff3ce; font-family: roboto; font-weight: bold;">
         <div class="container-xll">
             {{error}}
             <!-- NAVBAR -->
-            <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #2680bdb0">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #6f42c1">
                 <div class="container-fluid col-10">
-                    <a class="navbar-brand" href="/tasks/">Voltalia</a>
+                    <a href=""><img style="height: 50px; width: 50px;" src="../assets/WhatsApp Image 2023-03-16 at 12.33.08 (1).jpeg" alt="voltalia"></img></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggle-icon"></span>
                     </button>
@@ -27,13 +28,10 @@
                         <!-- ITENS -->
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <button class="btn btn-outline-success" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Adicionar</button>
+                                <button class="btn btn-outline-light" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Adicionar</button>
                             </li>
                             <li class="nav-item">
-                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Deletar</button>
-                            </li>
-                            <li class="nav-item">
-                                <a type="button" class="btn btn-primary" href="{% url 'heat_map' %}">HeatMap</a>
+                                <a type="button" class="btn btn-outline-light" href="{% url 'heat_map' %}">HeatMap</a>
                             </li>
                         </ul>
                         <!-- END ITENS -->
@@ -89,31 +87,6 @@
                     </div>
                 </div>
             </form>
-            <!-- DELETAR MODAL -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Deletar Ativo</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="col-4">
-                                    <label for="recipient-name" class="col-form-label">ID</label>
-                                    <input type="text" class="form-control" id="recipient-name">
-                                </div>
-                            </form>
-                        </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                        <button type="button" class="btn btn-danger">Deletar</button>
-                    </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END DELETAR MODAL -->
-
             <!-- Listando ativos -->
             {% for loc in localizacao %}
                 <div class="list-group">
@@ -138,7 +111,7 @@
                     </div>
                 </div>
                 {% empty %}
-                    <h1 class="text-light">Nenhum equipamento cadastrado!</h1>
+                    <h1 class="text-bold" style="display: flex; align-items: center; justify-content: center;">Nenhum equipamento cadastrado!</h1>
             {% endfor %}
         </div>
     </body>
