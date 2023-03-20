@@ -1,49 +1,54 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Localizacao, Eficiencia
-from .utils.hashMap import HashTable
+import plotly.express as px
 
 # Create your views here.
 def home(request):
     localizacao = listar_localizacao(request)
+    print(localizacao)
     return render(request, "tarefas.html",{"localizacao": localizacao})
-
-def hMap_dados():
-    IDs = []
-    equipamentos = Localizacao.objects.all().values_list()
-    cont = 0
-
-    # Pegando os IDS
-    for cont in range(equipamentos.__len__()):
-        IDs.append(equipamentos[cont][0])
-        cont = cont + 1
-
-    # Pegando a eficiência de cada equipamento
-    hMap = HashTable(IDs.__len__()-1)
-    i = 0
-    for i in range(IDs.__len__()):
-        hMap.set_val(IDs[i], Eficiencia.objects.filter(localizacao_id=IDs[i]).values_list())
-        i = i + 1
-    print(hMap)
-    return hMap
 
 def dados(request):
     IDs = []
     equipamentos = Localizacao.objects.all().values_list()
     cont = 0
-
     # Pegando os IDS
     for cont in range(equipamentos.__len__()):
         IDs.append(equipamentos[cont][0])
         cont = cont + 1
-
     # Pegando a eficiência de cada equipamento
-    hMap = HashTable(IDs.__len__()-1)
     i = 0
+    meses_eficiencia = []
     for i in range(IDs.__len__()):
-        hMap.set_val(IDs[i], Eficiencia.objects.filter(localizacao_id=IDs[i]).values_list())
+        meses_eficiencia.append(Eficiencia.objects.filter(localizacao_id=IDs[i]).values_list())
         i = i + 1
-    print(hMap)
-    return render(request, "heat_map.html", {"hmap": hMap})
+    meses = Eficiencia.objects.filter(localizacao_id=IDs[0]).values_list()
+    axis_x = []
+    for x in range(meses.__len__()):
+        axis_x.append(meses[x][2])
+    porcentagem = []
+    row = 0
+    print(IDs)
+    for row in range(meses_eficiencia.__len__()):
+        lista_nova = []
+        for j in range(len(meses_eficiencia[0][0])):
+            lista_nova.append(meses_eficiencia[row][j][3])
+            j = j + 1
+        porcentagem.append(lista_nova)
+        row = row + 1
+    fig = px.imshow(
+        porcentagem,
+        labels=dict(x="Meses do ano", y="ID das máquinas", color="eficiência"),
+        x=axis_x,
+        y=IDs,
+        text_auto=True,
+        )
+    fig.update_xaxes(side='top')
+    fig.update_layout(
+        autosize = False
+    )
+    chart = fig.to_html()
+    return render(request, "heat_map.html", {'chart': chart})
 
 def mapa(request, loc_id):
     localizacao = Localizacao.objects.get(id=loc_id)
