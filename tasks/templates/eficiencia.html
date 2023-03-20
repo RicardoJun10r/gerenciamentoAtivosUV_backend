@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+            crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container-fluid">
+            <form action="{% url 'add_eficiencia' localizacao.id %}" method="POST">
+                {% csrf_token %}
+                <div class="card w-75 mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Ativo - {{ localizacao.id }}</h5>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect01">Mês</label>
+                            <select class="form-select" id="mes" name="mes">
+                                <option selected>Selecione</option>
+                                <option value="Janeiro">Janeiro</option>
+                                <option value="Fevereiro">Fevereiro</option>
+                                <option value="Marco">Março</option>
+                                <option value="Abril">Abril</option>
+                                <option value="Maio">Maio</option>
+                                <option value="Junho">Junho</option>
+                                <option value="Julho">Julho</option>
+                                <option value="Agosto">Agosto</option>
+                                <option value="Setembro">Setembro</option>
+                                <option value="Outubro">Outubro</option>
+                                <option value="Novembro">Novembro</option>
+                                <option value="Dezembro">Dezembro</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="inputEmail4" class="form-label">Eficiência</label>
+                            <input type="text" class="form-control" id="porcentagem" name="porcentagem">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/tasks/" class="btn btn-primary">Voltar</a>
+                        <button class="btn btn-primary" type="submit">Criar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</html>
